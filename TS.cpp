@@ -620,7 +620,7 @@ Byte TS::Next(){
 
 Byte TS::PSO( Uint _Candidatos, float Eps, Uint Tryies ){
 	float Best, Best_Temp;
-	Uint Nn;
+	Uint Nn, Ni;
 
 	if( !_Candidatos )
 		return( 0 );
@@ -633,8 +633,10 @@ Byte TS::PSO( Uint _Candidatos, float Eps, Uint Tryies ){
 
 	this->Print();
 
+	Ni = 0;
 	while( Nn < Tryies ){
 		this->Next();
+		printf("\t\t\t\t Iteração %d\n", Ni);
 		this->Print();
 
 		Best_Temp = this->Cost( &Pbest[ Gbest ] );
@@ -644,8 +646,11 @@ Byte TS::PSO( Uint _Candidatos, float Eps, Uint Tryies ){
 			Nn = 0;
 			Best = Best_Temp;
 		}
+		Ni++;
 	}
 
+
+	printf( "\n\n -- Número de iterações: %d\n", Ni );
 	return( 1 );
 }
 
